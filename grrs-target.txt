@@ -1,0 +1,4 @@
+pattern
+not-pattern
+up
+dog

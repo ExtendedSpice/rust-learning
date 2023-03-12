@@ -3,11 +3,8 @@ use clap::Parser;
 
 fn main() {
     println!("Hello, world!");
-
-
-    let options2 = GrrsOptions::parse();
-    println!("{}", options2);
-
+    std::env::args().for_each(|x| print!("{} ", x));
+    println!();
 
     let pattern = std::env::args().nth(1).expect("expecting search pattern here");
     let path = std::env::args().nth(2).expect("expecting file path here");
@@ -15,11 +12,22 @@ fn main() {
     println!("{}", pattern);
     println!("{}", path);
 
-    let options = GrrsOptions{
+    let _options = GrrsOptions{
         pattern,
         path: std::path::PathBuf::from(path)
     };
+    //println!("{}", options);
+
+    let options = GrrsOptions::parse();
     println!("{}", options);
+
+
+    let content = std::fs::read_to_string(&options.path).expect("could not read file");
+    for line in content.lines() {
+        if line.contains(&options.pattern) {
+            println!("{}", line);
+        }
+    }
 
 
 }
