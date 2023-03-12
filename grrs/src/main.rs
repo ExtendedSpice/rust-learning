@@ -1,5 +1,8 @@
 use std::fmt::{self, Display};
 use clap::Parser;
+use std::io::BufReader;
+use std::fs::File;
+use std::io::prelude::*;
 
 fn main() {
     println!("Hello, world!");
@@ -22,14 +25,16 @@ fn main() {
     println!("{}", options);
 
 
-    let content = std::fs::read_to_string(&options.path).expect("could not read file");
-    for line in content.lines() {
+    let file = File::open(&options.path).expect("could not read file");
+    let mut reader = BufReader::new(file);
+    let mut line = String::new();
+    
+    while reader.read_line(&mut line).expect("unable to read line") > 0 {
         if line.contains(&options.pattern) {
-            println!("{}", line);
+            println!("{}", line.trim_end());
         }
+        line.clear();
     }
-
-
 }
 
 #[derive(Parser)]

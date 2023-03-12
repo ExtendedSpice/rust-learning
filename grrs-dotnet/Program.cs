@@ -15,12 +15,13 @@ var options = new GrrsOptions
 };
 Console.WriteLine(options);
 
-var lines = File.ReadAllLines(options.Path);
-foreach (var line in lines)
+using var reader = new StreamReader(options.Path);
+while (reader.ReadLine() is string line)
 {
     if (line.Contains(options.Pattern))
         Console.WriteLine(line);
 }
+
 
 class GrrsOptions
 {

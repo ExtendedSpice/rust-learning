@@ -2,3 +2,6 @@ pattern
 not-pattern
 up
 dog
+
+^ was empty
+⌄ will be empty
