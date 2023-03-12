@@ -15,11 +15,19 @@ var options = new GrrsOptions
 };
 Console.WriteLine(options);
 
-using var reader = new StreamReader(options.Path);
-while (reader.ReadLine() is string line)
+try
 {
-    if (line.Contains(options.Pattern))
-        Console.WriteLine(line);
+    using var reader = new StreamReader(options.Path);
+    while (reader.ReadLine() is string line)
+    {
+        if (line.Contains(options.Pattern))
+            Console.WriteLine(line);
+    }
+}
+catch (Exception e)
+{
+    Console.WriteLine($"error on reading file: {e}");
+    return;
 }
 
 

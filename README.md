@@ -2,7 +2,7 @@
 
 learning rust https://rust-cli.github.io/book/tutorial/index.html
 
-next lesson https://rust-cli.github.io/book/tutorial/errors.html
+next https://rust-cli.github.io/book/tutorial/output.html
 
 
 # commands
