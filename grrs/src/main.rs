@@ -1,5 +1,6 @@
 use anyhow::{Context, Result};
 use clap::Parser;
+use log::{debug, info, warn};
 use std::error::Error;
 use std::fmt::{self, Display};
 use std::fs::File;
@@ -58,6 +59,21 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
         line.clear();
     }
+
+    let pb = indicatif::ProgressBar::new(50);
+    let style = pb.style().template("{spinner} {msg} {bar}")?;
+
+    env_logger::init();
+    pb.set_style(style);
+    info!("started");
+    for i in 0..1000001 {
+        //do_hard_work();
+        pb.set_message(format!("finished #{}", i));
+        pb.inc(1);
+    }
+    pb.finish_with_message("done");
+    debug!("tick");
+    warn!("finish");
 
     Ok(())
 }
