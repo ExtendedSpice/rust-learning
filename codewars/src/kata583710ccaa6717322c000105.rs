@@ -1,4 +1,4 @@
-pub fn simple_multiplication(number: u8) -> u8 {
+pub fn _simple_multiplication(number: u8) -> u8 {
     let odd = number & 1 == 1;
     if odd {
         return number * 9;

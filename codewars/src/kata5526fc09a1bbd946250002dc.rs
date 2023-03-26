@@ -1,4 +1,4 @@
-pub fn find_outlier(values: &[i32]) -> i32 {
+pub fn _find_outlier(values: &[i32]) -> i32 {
     let mut odd: i32 = 0;
     let mut even: i32 = 0;
 
